@@ -1,0 +1,12 @@
+.who-follow {
+  display: grid;
+  border: 1px solid rgb(47, 51, 54);
+  border-radius: 16px;
+  & h3 {
+    font-size: 1.3rem;
+    margin: .5rem 1rem;
+  }
+
+  & .user {
+  }
+}

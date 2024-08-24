@@ -1,0 +1,42 @@
+.posts-list {
+  & .post{
+    padding: 12px;
+    display: flex;
+    gap: .5rem;
+    border-top: 1px solid rgb(47, 51, 54);
+    font-size: 15px;
+    &:last-child {
+      border-bottom: 1px solid rgb(47, 51, 54);
+    }
+    & .avatar {
+      & img {
+        width: 40px;
+        height: 40px;
+        margin-top: 4px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+    & .author {
+      display: flex;
+      gap: .5rem;
+      align-items: end;
+      & a {
+        text-decoration: none;
+        color: rgb(231, 233, 234);
+        &:hover{
+          text-decoration: underline solid 1px rgb(231, 233, 234);
+        }
+      }
+      & .username {
+        font-weight: 700;
+      }
+      & .date {
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 100;
+      }
+    }
+    & .content {
+    }
+  }
+}

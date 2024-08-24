@@ -1,0 +1,5 @@
+.aside {
+  padding: 12px 32px;
+  display: grid;
+  gap: 2rem;
+}

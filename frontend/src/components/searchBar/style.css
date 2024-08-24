@@ -1,0 +1,35 @@
+.search-bar {
+  position: relative;
+  & input {
+    border-radius: 32px;
+    border: none;
+    background-color: rgba(179, 180, 210, 0.2);
+    padding: 12px 12px 12px 24px;
+    font-size: 15px;
+    &:focus {
+      outline: 1px solid #1d9bf0;
+    }
+  }
+  & .user-results {
+    position: absolute;
+    top: 100%;
+    background-color: rgba(0, 0, 0);
+    width: 100%;
+    border-radius: 16px;
+    margin-top: .25rem;
+    box-shadow: 1px 1px 4px 0px rgba(255, 255, 255, 0.24),
+                -1px -1px 4px 0px rgba(255, 255, 255, 0.24);
+    
+    & .generic {
+      padding: 12px;
+      margin: 0;
+    }
+  }
+  & .visible {
+    display: block;
+  }
+
+  & .hidden {
+    display: none;
+  }
+}

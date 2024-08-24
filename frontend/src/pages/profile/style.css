@@ -1,0 +1,43 @@
+.profile-body {
+  border-right: 1px solid rgb(47, 51, 54);
+}
+
+.profile-user {
+  & .header_photo {
+    width: 100%;
+    height: 200px;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  & .body {
+    padding: 12px;
+    width: 100%;
+    & .info {
+      border-radius: 50%;
+      display: flex;
+      justify-content: space-between;
+      & img {
+        border: 4px solid black;
+        max-width: 130px;
+        height: 130px;
+
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-top: calc(-12% - 12px);
+      }
+    }
+    & .username {
+      & h3 {
+        margin: 1rem 0 0 0;
+      }
+      & span {
+      }
+    }
+  }
+}

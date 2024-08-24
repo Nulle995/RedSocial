@@ -1,0 +1,14 @@
+.index {
+  max-width: 400px;
+  margin: auto;
+}
+
+.access-link {
+  cursor: pointer;
+  color: #646cff;
+}
+
+.access-link:hover {
+  color: #7379f0;
+  text-decoration: underline 1px solid #7379f0;
+}

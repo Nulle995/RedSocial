@@ -1,0 +1,21 @@
+form > * {
+  display: block;
+}
+form {
+  & h1 {
+    font-size: 3rem;
+    padding: 32px;
+  }
+  & label{
+    font-size: 1.2rem;
+    text-align: left;
+  }
+  & input {
+    padding: 8px;
+    text-align: left;
+    width: 100%;
+  }
+  & button {
+    margin: 8px 0;
+  }
+}
