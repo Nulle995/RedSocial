@@ -28,6 +28,7 @@ const FollowButton = ({ user }) => {
 
   const handleFollow = () => {
     const follow = async () => {
+      setIsFollowing(true);
       if (userData) {
         try {
           const res = await APIToken.post("followers/", followData);
@@ -38,6 +39,7 @@ const FollowButton = ({ user }) => {
           console.log(data);
         } catch (error) {
           console.log(error);
+          setIsFollowing(false);
         }
       }
     };
@@ -46,6 +48,7 @@ const FollowButton = ({ user }) => {
 
   const handleUnfollow = () => {
     const unfollow = async () => {
+      setIsFollowing(false);
       const followObj = user.followers.find(
         (follower) => follower.follower_data.username === userData.username
       );
@@ -61,6 +64,7 @@ const FollowButton = ({ user }) => {
         console.log(data);
       } catch (error) {
         console.log(error);
+        setIsFollowing(true);
       }
     };
     unfollow();

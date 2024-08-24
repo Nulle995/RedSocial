@@ -3,11 +3,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
 
-import "./App.css";
 import Index from "./pages/index/Index";
 import Home from "./pages/home/Home";
 import UserLayout from "./layouts/UserLayout";
 import Profile from "./pages/profile/Profile";
+import "./App.css";
+import "./fonts.css";
 
 function App() {
   const { userData } = useContext(UserContext);
