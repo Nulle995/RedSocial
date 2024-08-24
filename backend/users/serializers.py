@@ -6,6 +6,7 @@ from followers.serializers import FollowersSerializer
 
 class UserProfileSerializer(serializers.ModelSerializer):
     avatar = serializers.ImageField(use_url=True, required=False)
+    header_photo = serializers.ImageField(use_url=True, required=False)
     followers = FollowersSerializer(read_only=True, many=True)
     following = FollowersSerializer(read_only=True, many=True)
 
@@ -21,6 +22,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "birth_date",
             "password",
             "avatar",
+            "header_photo",
             "followers",
             "following",
         ]
@@ -35,6 +37,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             bio=validated_data.get("bio", "User's Bio"),
             birth_date=validated_data.get("birth_date"),
             avatar=validated_data.get("avatar"),
+            header_photo=validated_data.get("header_photo"),
         )
 
         return user
@@ -43,6 +46,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class UserProfileAllSerializer(serializers.ModelSerializer):
     posts = PostSerializer(read_only=True, many=True)
     avatar = serializers.ImageField(use_url=True, required=False)
+    header_photo = serializers.ImageField(use_url=True, required=False)
     followers = FollowersSerializer(read_only=True, many=True)
     following = FollowersSerializer(read_only=True, many=True)
 
@@ -59,6 +63,7 @@ class UserProfileAllSerializer(serializers.ModelSerializer):
             "password",
             "posts",
             "avatar",
+            "header_photo",
             "followers",
             "following",
         ]

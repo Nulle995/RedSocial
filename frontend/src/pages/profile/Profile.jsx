@@ -32,10 +32,7 @@ const Profile = () => {
         {userProfile ? (
           <div className="profile-user">
             <div className="header_photo">
-              <img
-                src="https://i0.wp.com/picjumbo.com/wp-content/uploads/camping-on-top-of-the-mountain-during-sunset-free-photo.jpg?w=600&quality=80"
-                alt=""
-              />
+              <img src={userProfile.header_photo} alt="" />
             </div>
             <div className="body">
               <div className="info">
