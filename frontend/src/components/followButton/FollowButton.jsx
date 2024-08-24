@@ -7,19 +7,24 @@ const FollowButton = ({ user }) => {
   const { userData, reload, setReload } = useContext(UserContext);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followData, setFollowData] = useState({
-    user: user.pk,
-    follower: userData?.user_id,
+    user_id: user.pk,
+    follower_id: userData?.user_id,
   });
   const [followPk, setFollowPk] = useState();
   const followingTo = () => {
     console.log(user);
+    if (user.followers) {
+      console.log(user.followers.length > 0);
+    }
 
-    user.followers.find((follower) => {
-      follower.follower_data.username === userData.username
-        ? setIsFollowing(true)
-        : setIsFollowing(false);
-    });
+    user?.followers?.length > 0 &&
+      user.followers.find((follower) => {
+        follower.follower.username === userData.username
+          ? setIsFollowing(true)
+          : setIsFollowing(false);
+      });
   };
+
   useEffect(() => {
     setIsFollowing(false);
 
@@ -31,12 +36,13 @@ const FollowButton = ({ user }) => {
       setIsFollowing(true);
       if (userData) {
         try {
+          console.log(followData);
+
           const res = await APIToken.post("followers/", followData);
           const { data } = res;
           setIsFollowing(true);
           setFollowPk(data.pk);
           // setReload(!reload);
-          console.log(data);
         } catch (error) {
           console.log(error);
           setIsFollowing(false);
@@ -49,10 +55,10 @@ const FollowButton = ({ user }) => {
   const handleUnfollow = () => {
     const unfollow = async () => {
       setIsFollowing(false);
+
       const followObj = user.followers.find(
-        (follower) => follower.follower_data.username === userData.username
+        (follower) => follower.follower.username === userData.username
       );
-      console.log(followObj);
 
       try {
         const res = await APIToken.delete(
@@ -61,7 +67,6 @@ const FollowButton = ({ user }) => {
         const { data } = res;
         // followingTo();
         setIsFollowing(false);
-        console.log(data);
       } catch (error) {
         console.log(error);
         setIsFollowing(true);
@@ -78,7 +83,6 @@ const FollowButton = ({ user }) => {
           <button onClick={handleFollow}>Follow</button>
         )
       ) : null}
-      {}
     </div>
   );
 };

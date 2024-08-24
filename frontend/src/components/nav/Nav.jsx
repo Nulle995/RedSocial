@@ -51,7 +51,7 @@ const Nav = () => {
         })}
       </div>
       <div className="profile">
-        <Users user={userData} follow={false} />
+        <Users user={userData} follow={false} bio={false} />
       </div>
     </nav>
   );

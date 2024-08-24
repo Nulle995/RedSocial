@@ -68,6 +68,19 @@ class UserProfileAllSerializer(serializers.ModelSerializer):
             "following",
         ]
 
+        def to_representation(self, instance):
+            representation = super().to_representation(instance)
+
+            # Remover `followers` si no existen
+            if not instance.followers.exists():
+                representation.pop("followers", None)
+
+            # Remover `following` si no existen
+            if not instance.following.exists():
+                representation.pop("following", None)
+
+            return representation
+
 
 # Add info to the Token
 import os

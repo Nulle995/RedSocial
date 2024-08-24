@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { API } from "../../utils/api";
 import Aside from "../../components/aside/Aside";
@@ -49,7 +49,12 @@ const Profile = () => {
               </div>
               <div className="bio">{userProfile.bio}</div>
               <div className="contact">📧{userProfile.email}</div>
-              <div className="stats">{userProfile.posts.length} Posts</div>
+              <div className="stats">
+                <Link to={`following`}>
+                  {userProfile.following.length} Following
+                </Link>
+                <Link>{userProfile.followers.length} Followers</Link>
+              </div>
             </div>
             <section className="user-posts">
               <PostsList posts={userProfile.posts} />

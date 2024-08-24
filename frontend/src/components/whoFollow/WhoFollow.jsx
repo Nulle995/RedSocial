@@ -24,7 +24,11 @@ const WhoFollow = () => {
       <h3>Who to follow</h3>
       <div className="user">
         {users ? (
-          users.slice(0, 4).map((user) => <Users user={user} follow={true} />)
+          users
+            .slice(0, 4)
+            .map((user) => (
+              <Users user={user} follow={true} key={user.pk} bio={false} />
+            ))
         ) : (
           <p>No hay usuarios para seguir...</p>
         )}

@@ -1,30 +1,58 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { UserContext } from "../../contexts/UserContext";
 import "./style.css";
 import FollowButton from "../followButton/followButton";
 
-const Users = ({ user, follow }) => {
-  const { username, avatar } = user;
+const Users = ({ user, follow, bio }) => {
   const { userData, reload, setReload } = useContext(UserContext);
-  console.log(user);
+  // const [bio, setBio] = useState();
+  const [newUser, setNewUser] = useState({
+    pk: user.pk,
+    user: user.username,
+    avatar: user.avatar,
+    bio: user.bio,
+  });
+
+  const getUsername = () => {
+    if (user?.user?.username) {
+      console.log("verdad");
+      console.log(user.user.username, "acaaaa--------");
+
+      setNewUser({
+        pk: user.user.pk,
+        user: user.user.username,
+        bio: user.user.bio,
+      });
+    } else {
+      console.log("falseo");
+      console.log(user.username, "acaa-ewew---");
+    }
+  };
+
+  useEffect(() => {
+    getUsername();
+  }, []);
 
   return (
-    <div className="user-component">
+    <div className="user-component" key={newUser.pk}>
       <div className="user-info">
-        <Link to={`/profile/${username}`}>
+        <Link to={`/profile/${newUser.user}`}>
           <div className="avatar">
-            {avatar ? (
-              <img src={avatar} alt="" />
+            {newUser.avatar ? (
+              <img src={newUser.avatar} alt="" />
             ) : (
               <img src="/public/avatar.jpg" />
             )}
           </div>
         </Link>
-        <Link to={`/profile/${username}`} className="username">
-          <div>{username}</div>
-        </Link>
+        <div className="username">
+          <Link to={`/profile/${newUser.user}`} className="username">
+            <div>{newUser.user}</div>
+          </Link>
+          <div>{bio ? newUser.bio : null}</div>
+        </div>
         {follow ? <FollowButton user={user} /> : null}
       </div>
     </div>

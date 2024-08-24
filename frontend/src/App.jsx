@@ -9,6 +9,7 @@ import UserLayout from "./layouts/UserLayout";
 import Profile from "./pages/profile/Profile";
 import "./App.css";
 import "./fonts.css";
+import Following from "./pages/following/Following";
 
 function App() {
   const { userData } = useContext(UserContext);
@@ -34,6 +35,18 @@ function App() {
             userData ? (
               <UserLayout>
                 <Profile />
+              </UserLayout>
+            ) : (
+              <Index />
+            )
+          }
+        />
+        <Route
+          path="/profile/:username/following"
+          element={
+            userData ? (
+              <UserLayout>
+                <Following />
               </UserLayout>
             ) : (
               <Index />

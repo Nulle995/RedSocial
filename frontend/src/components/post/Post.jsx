@@ -50,6 +50,7 @@ const Post = ({ setPosts, posts }) => {
           value={formData.content}
           onChange={handleChange}
           id="content"
+          autoComplete="off"
         />
         <button>Post</button>
       </form>
