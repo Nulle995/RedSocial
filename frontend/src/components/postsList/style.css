@@ -1,6 +1,6 @@
 .posts-list {
   & .post{
-    padding: 12px;
+    padding: 12px 1rem 12px 12px;
     display: flex;
     gap: .5rem;
     border-top: 1px solid rgb(47, 51, 54);
@@ -37,6 +37,16 @@
       }
     }
     & .content {
+    }
+    & .image-post {
+      margin-top: 1rem;
+      & img {
+        height: 100%;
+        width: 100%;
+        border-radius: 12px;
+        object-fit: cover;
+
+      }
     }
   }
 }

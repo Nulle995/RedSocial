@@ -32,13 +32,20 @@ class PostCommentsSerializer(serializers.Serializer):
         return obj.date
 
 
+class PostImagesSerializer(serializers.Serializer):
+    img = serializers.ImageField(use_url=True, required=False)
+
+    def get_img(self, obj):
+        return obj.img
+
+
 class PostSerializer(serializers.ModelSerializer):
     author = UserDataSerializer(
         read_only=True,
         source="user",
     )
-
     comments = PostCommentsSerializer(read_only=True, many=True)
+    images = PostImagesSerializer(read_only=True, many=True)
 
     class Meta:
         model = Post
@@ -50,6 +57,7 @@ class PostSerializer(serializers.ModelSerializer):
             "created_at",
             "likes",
             "comments",
+            "images",
         ]
         extra_kwargs = {
             "pk": {"read_only": True},

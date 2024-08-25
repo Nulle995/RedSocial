@@ -4,12 +4,25 @@ import { Link } from "react-router-dom";
 
 const PostsList = ({ posts }) => {
   const [postsList, setPostsList] = useState([]);
+  const [postContent, setPostContent] = useState("");
+
   useEffect(() => {
     setPostsList(posts);
+    console.log(posts);
   }, [posts]);
   return (
     <section className="posts-list">
       {postsList?.map((post) => {
+        const formatContent = () => {
+          // post.content.split("\n").forEach((word) => console.log(word));
+          const formattedPost = post.content.split("\n").map((word) => word);
+          console.log(formattedPost);
+          const htmlPost = formattedPost.map((phrase) => phrase + "</br>");
+          console.log(htmlPost.join(""));
+          return htmlPost.join("");
+        };
+        formatContent();
+
         const date = new Date(post.created_at);
         const now = new Date();
 
@@ -49,7 +62,15 @@ const PostsList = ({ posts }) => {
                 </Link>
                 <span className="date">{horas()}</span>
               </div>
-              <div className="content">{post.content}</div>
+              <div
+                className="content"
+                dangerouslySetInnerHTML={{ __html: formatContent() }}
+              ></div>
+              <div className="image-post">
+                {post.images.length > 0 ? (
+                  <img src={post.images[0].img} alt="" />
+                ) : null}
+              </div>
               <div>❤️ {post.likes?.length ? post.likes.length : "0"}</div>
             </div>
           </article>
