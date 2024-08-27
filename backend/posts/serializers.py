@@ -39,6 +39,14 @@ class PostImagesSerializer(serializers.Serializer):
         return obj.img
 
 
+class PostLikesSerializer(serializers.Serializer):
+    user = UserDataSerializer(read_only=True)
+    pk = serializers.SerializerMethodField(read_only=True)
+
+    def get_pk(self, obj):
+        return obj.pk
+
+
 class PostSerializer(serializers.ModelSerializer):
     author = UserDataSerializer(
         read_only=True,
@@ -46,6 +54,7 @@ class PostSerializer(serializers.ModelSerializer):
     )
     comments = PostCommentsSerializer(read_only=True, many=True)
     images = PostImagesSerializer(read_only=True, many=True)
+    likes = PostLikesSerializer(read_only=True, many=True)
 
     class Meta:
         model = Post

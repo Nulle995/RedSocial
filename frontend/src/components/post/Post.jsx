@@ -11,7 +11,6 @@ const Post = ({ setPosts, posts }) => {
     content: "",
     images: null,
   });
-  console.log(userData);
   const [imgPost, setImgPost] = useState();
 
   const handleChange = (e) => {

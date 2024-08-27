@@ -17,17 +17,12 @@ const Users = ({ user, follow, bio }) => {
 
   const getUsername = () => {
     if (user?.user?.username) {
-      console.log("verdad");
-      console.log(user.user.username, "acaaaa--------");
-
       setNewUser({
         pk: user.user.pk,
         user: user.user.username,
         bio: user.user.bio,
       });
     } else {
-      console.log("falseo");
-      console.log(user.username, "acaa-ewew---");
     }
   };
 

@@ -35,7 +35,9 @@ const Home = () => {
     <main className="home">
       <section className="center">
         <Post setPosts={setPosts} posts={posts} />
-        <PostsList posts={posts ? posts : null} />
+        {posts
+          ? posts.map((post) => <PostsList post={post} />)
+          : "No hay posts"}
       </section>
       {/* <span className="access-link" onClick={handleLogout}>
         Logout

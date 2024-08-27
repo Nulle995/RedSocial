@@ -12,17 +12,44 @@ const FollowButton = ({ user }) => {
   });
   const [followPk, setFollowPk] = useState();
   const followingTo = () => {
-    console.log(user);
-    if (user.followers) {
-      console.log(user.followers.length > 0);
-    }
+    // userData.following.length > 0 &&
+    //   userData.following.find((followedUser) => {
+    //     console.log(user);
+    //     console.log(userData);
+    //     if (user?.user?.username) {
+    //       console.log("entro en if");
 
-    user?.followers?.length > 0 &&
-      user.followers.find((follower) => {
-        follower.follower.username === userData.username
-          ? setIsFollowing(true)
-          : setIsFollowing(false);
+    //       if (followedUser.user.username === user.user.username) {
+    //         setIsFollowing(true);
+    //         return true;
+    //       }
+    //     } else {
+    //       console.log("entro en el else");
+
+    //       if (followedUser.user.username === user.username) {
+    //         console.log("entro en la otra condicional");
+
+    //         setIsFollowing(true);
+    //         return true;
+    //       }
+    //     }
+    //   });
+
+    if (user.followers) {
+      user?.followers?.length > 0 &&
+        user.followers.find((follower) => {
+          follower.follower.username === userData.username
+            ? setIsFollowing(true)
+            : setIsFollowing(false);
+        });
+    } else {
+      userData.following.find((followingUser) => {
+        if (followingUser.user.username === user.user.username) {
+          setIsFollowing(true);
+          return true;
+        }
       });
+    }
   };
 
   useEffect(() => {
@@ -36,13 +63,10 @@ const FollowButton = ({ user }) => {
       setIsFollowing(true);
       if (userData) {
         try {
-          console.log(followData);
-
           const res = await APIToken.post("followers/", followData);
           const { data } = res;
           setIsFollowing(true);
           setFollowPk(data.pk);
-          // setReload(!reload);
         } catch (error) {
           console.log(error);
           setIsFollowing(false);
@@ -76,7 +100,8 @@ const FollowButton = ({ user }) => {
   };
   return (
     <div className="follow">
-      {userData.username !== user.username ? (
+      {userData.username !== user.username &&
+      userData.username !== user?.user?.username ? (
         isFollowing ? (
           <button onClick={handleUnfollow}>Unfollow</button>
         ) : (

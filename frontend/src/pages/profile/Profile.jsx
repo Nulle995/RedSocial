@@ -57,7 +57,9 @@ const Profile = () => {
               </div>
             </div>
             <section className="user-posts">
-              <PostsList posts={userProfile.posts} />
+              {userProfile.posts
+                ? userProfile.posts.map((post) => <PostsList post={post} />)
+                : "No hay posts..."}
             </section>
           </div>
         ) : (
